@@ -1,0 +1,5 @@
+http://www.ibootstrap.cn/
+
+http://www.bootstrap.cn/
+
+关注http://bootcss.com网站，了解其中的一个名为hexo的工具，这是一个自动生成博客网站的系统

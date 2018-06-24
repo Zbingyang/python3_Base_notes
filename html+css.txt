@@ -1,0 +1,49 @@
+Python开发者为什么要学习前端知识？
+
+1. 全栈开发或者跟前端打交道
+2. 大数据 --> 爬虫 --> 前端
+
+HTML5
+标签(Tag) - Content - 承载数据
+
+   - h1~h6 / hr / p / em / strong / sub / sup 
+
+/ br
+   - ol / ul / li / dl / dt / dd
+   - img / figure / figcaption
+   - a (页面链接/锚点链接/功能链接)
+   - table / thead / tbody / tfoot / tr / th / 
+
+td / caption
+   - form / input(text / password / radio / 
+
+checkbox / file / submit / reset / image / 
+
+range / email / tel / number / date) / 
+
+fieldset / legend / select / option / textarea
+   - audio / video
+   - div / span
+
+层叠样式表(CSS) - Display- 渲染页面
+
+   - 外部样式表 / 内部样式表 / 内嵌样式表
+   - 选择器：* / h1 / .foo / #bar / h1,h2 / 
+
+div h2 / div>h2 / div~h2 / div+h2 / a[href] / 
+
+input[type=text] / p:first-letter / p:first-
+
+line / a:link / a:visited / a:active / a:hover
+   - 优先级：就近原则 / 具体性原则 / 重要性原
+
+则
+   - 常用样式：文本和字体/背景/边框/
+   - 盒子模型(Box Model)
+
+JavaScript(JS) - Behavior - 交互式行为
+   - ECMAScript - ES5.1 - 核心语法
+   - BOM - Browser Object Model - window
+   - DOM - Document Object Model - document
+
+- Sublime / HBuilder / WebStorm
