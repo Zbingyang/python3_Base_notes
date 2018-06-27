@@ -55,38 +55,159 @@ VALUES
 	
 	
 	-- 查询月薪最高的员工姓名和工资
-	select ename,max(sal) from tbemp;
+	select ename,sal from tbemp where sal=(select max(sal) from tbemp);
+	
+	select ename,sal from tbemp order by sal desc limit 1;
 
 -- 查询员工的姓名和年薪((月薪+补贴)*13)
 select ename,((sal+IFNULL(comm,0))* 13) as 年薪 from tbemp;
 
 -- 查询有员工的部门编号和人数
-select tbdept.dno,count(tbemp.dno) from tbdept,tbemp where tbdept.dno=tbemp.dno GROUP BY tbdept.dno;
+select dno,count(dno) from tbemp GROUP BY dno;
 -- 查询所有部门的名称和人数
-select dname,count(tbemp.dno) from tbdept,tbemp where tbdept.dno=tbemp.dno group by dname;
+select dname,ifnull(total,0) from tbdept t1 left outer join (select dno,count(dno) as total from tbemp group by dno) t2 on t1.dno=t2.dno;
+select dname,count(tbemp.dno) from tbdept,tbemp where tbdept.dno=tbemp.dno group by tbemp.dno;
 -- 查询薪资最高的员工(Boss除外)的姓名和工资
-select ename,max(sal) from tbemp where tbemp.ename<>'胡一刀' and tbemp.sal<>9000; 
+select ename,sal from tbemp where sal=(select max(sal) from tbemp where mgr is not null);
 
 -- 查询薪水超过平均薪水的员工的姓名和工资
 select ename,sal from tbemp where sal>=(select avg(sal) from tbemp);
 
 -- 查询薪水超过其所在部门平均薪水的员工的姓名、部门编号和工资
 
-select avg(sal),tbdept.dno from tbemp,tbdept where tbdept.dno=tbemp.dno group by tbemp.dno;
-
-
-select tbdept.dno,ename,sal from tbdept,tbemp where tbdept.dno in (select dno from tbdept) and tbdept.dno=tbemp.dno;
+select ename,t1.dno,sal,avgsal,sal-avgsal from tbemp t1 inner join
+(select dno,avg(sal) as avgsal from tbemp group by dno) t2
+on t1.dno=t2.dno and sal>avgsal;
 
 -- 查询部门中薪水最高的人姓名、工资和所在部门名称
-select max(sal),ename,dname from tbdept,tbemp where tbdept.dno=tbemp.dno group by dname;
+select ename,maxsal,dname from tbemp inner join
+(select dno,max(sal) as maxsal from tbemp group by dno) temp
+on tbemp.dno=temo.dno group by tbemp.dno;
 
--- 查询主管的姓名和职位
-select ename,job from tbemp where job like '%主管%';
+--  查询主管的姓名和职位
+select ename,job from tbemp where eno in
+(select DISTINCT mgr from tbemp where mgr is not null);
+
+
+-- 尽量避免使用distinct 和 in/not in运算，我们可以通过exists 或者not exitsts取代去重和集合运算;
+select ename,job from tbemp t1 where exists (select 'x' from tbemp t2 where t1.eno=t2.mgr);
 
 -- 查询薪资排名4~6名的员工姓名和工资
-select 
-	
-	
+-- 适用于分页查询，是数据库特有的；
+select ename,sal from tbemp order by sal desc limit 3;
+
+select ename,sal from tbemp order by sal desc limit 3,3;
+select ename,sal from tbemp order by sal desc limit 3 offset 3;
+
+
+select ename,sal from tbemp order by sal desc limit 6,3;
+select ename,sal from tbemp order by sal desc limit 3 offset 6;
+
+
+select ename,sal from tbemp order by sal desc limit 9,3;
+
+select ename,sal from tbemp order by sal desc limit 12,3;
+
+-- DCLREATE=
+-- 
+-- 创建用户
+CREATE user 'hellokitty'@'localhost' identified by '123456';
+-- 授予权限
+grant all privileges on hrs.* to 'hellokitty'@'localhost';
+-- 移除插入，删除的权限
+revoke insert,delete on hrs.* from 'hellokitty'@'localhost';
+
+
+-- 查询月薪最高的员工姓名和工资
+select ename, sal from tbemp
+order by sal desc limit 1;
+
+select ename, sal from tbemp 
+where sal=(select max(sal) from tbemp);
+
+-- 查询员工的姓名和年薪((月薪+补贴)*13)
+select ename as 姓名, (sal+ifnull(comm,0))*13 as 年薪 
+from tbemp;
+
+-- 查询有员工的部门编号和人数
+select dno, count(dno) from tbemp 
+group by dno;
+
+-- 查询所有部门的名称和人数
+select dname, ifnull(total, 0) from tbdept t1
+left outer join (select dno, count(dno) as total
+from tbemp group by dno) t2 
+on t1.dno=t2.dno;
+
+-- MySQL不支持下面的写法
+-- select dname, ifnull(total, 0) 
+-- from tbdept t1, (select dno, count(dno) as total
+-- from tbemp group by dno) t2 
+-- where t1.dno=t2.dno(+);
+
+-- 查询薪资最高的员工(Boss除外)的姓名和工资
+select ename, sal from tbemp 
+where sal=(select max(sal) from tbemp where mgr is not null);
+
+-- 查询薪水超过平均薪水的员工的姓名和工资
+select ename, sal from tbemp 
+where sal>(select avg(sal) from tbemp);
+
+-- 查询薪水超过其所在部门平均薪水的员工的姓名、部门编号和工资
+select ename, t1.dno, sal, avgsal, sal-avgsal from tbemp t1
+inner join (select dno, avg(sal) as avgsal 
+from tbemp group by dno) t2 
+on t1.dno=t2.dno and sal>avgsal;
+
+-- 查询部门中薪水最高的人姓名、工资和所在部门名称
+select ename, sal, dname from tbemp t1 
+inner join (select dno, max(sal) as maxsal 
+from tbemp group by dno) temp
+on t1.dno=temp.dno and sal=maxsal
+inner join tbdept t2
+on t1.dno=t2.dno;
+
+-- 查询主管的姓名和职位
+select ename, job from tbemp 
+where eno in (select distinct mgr 
+from tbemp where mgr is not null);
+
+-- 尽量避免使用distinct和in/not in运算
+-- 可以通过exists或者not exists来取代去重和集合运算
+select ename, job from tbemp t1
+where exists (select 'x' from tbemp t2 where t1.eno=t2.mgr);
+
+
+
+
+-- 查询薪资排名4~6名的员工姓名和工资
+select ename, sal from tbemp 
+order by sal desc limit 3;
+select ename, sal from tbemp 
+order by sal desc limit 3 offset 3;
+select ename, sal from tbemp 
+order by sal desc limit 6,3;
+select ename, sal from tbemp 
+order by sal desc limit 9,3;
+select ename, sal from tbemp 
+order by sal desc limit 3 offset 12;
+select ename, sal from tbemp 
+order by sal desc limit 3 offset 15;
+select ename, sal from tbemp 
+order by sal desc limit 0,10;
+select ename, sal from tbemp 
+order by sal desc limit 10,10;
+select ename, sal from tbemp 
+order by sal desc limit 20,10;
+
+
+
+-- drop user 'hellokitty'@'%';
+create user 'hellokitty'@'%' identified by '123123';
+grant all privileges on *.* to 'hellokitty'@'%';
+revoke insert, delete on HRS.* from 'hellokitty'@'%';
+
+
 	
 	
 	

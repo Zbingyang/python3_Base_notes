@@ -17,6 +17,7 @@ primary key (collid)
 
 -- 添加唯一性约束
 alter table tb_college add constraint uni_college_collname unique (collname);
+-- 添加唯一性约束其实就是给这一列添加唯一的索引，所以在下面的删除操作时是删除索引index;
 -- alter table tb_college drop index uni_college_collname;
 
 -- 创建学生表
@@ -255,14 +256,40 @@ where t1.collid=t2.collid;
 select stuname, collname from tb_student t1 
 inner join tb_college t2 on t1.collid=t2.collid;
 
+-- explain + sql 语句：可以分析你的sql语句；
+
 -- 查询学生姓名、课程名称以及考试成绩
 
+select stuname,cname,score from tb_student,tb_course,tb_score where stuid=sid and cid=courseid;
 
+-- select stuname,cname,score from tb_student inner join tb_score on stuid=sid inner join tb_course on cid=corseid and score is not null;
 -- 查询选课学生的姓名和平均成绩(子查询和连接查询)
-
-
+select stuname,avgscore from tb_student inner join (select sid,avg(score) as avgscore from tb_score group by sid) temp on sid=stuid; 
+select stuname,avg(score) from tb_student,tb_score where stuid=sid group by sid;
 -- 查询学生姓名、所选课程名称和成绩(连接查询)
-
+select stuname,cname,score from tb_student,tb_course,tb_score where stuid=sid and cid=courseid;
 
 -- 查询每个学生的姓名和选课数量(左外连接和子查询)
+-- 内连接只能查满足条件的记录查出来
+select stuname,count(courseid) from tb_student,tb_course,tb_score where sid=stuid and courseid=cid group by stuname;
+-- 不满足条件的加null mysql不支持全外连接；
+select stuname,ifnull(total,0) as 课程数 from tb_student left outer join
+(select sid,count(sid) as total from tb_score group by sid) temp on sid=stuid;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

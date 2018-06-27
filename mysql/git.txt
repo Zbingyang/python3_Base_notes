@@ -1,0 +1,57 @@
+版本控制系统软件：
+90年的产品：
+cvs：锁定模式
+vss：锁定模式，一个人在一个时间点只能操作这个文件。
+
+2000年的产品（网络和服务器是必须的）：
+Subversion -SVN:合并模式，大家都可以操作同一个文件，在提交时如果两个人的操作部分是一样的，那么在提交时就会发生冲突，然后两个人再去协商.
+集中控制式的版本系统
+
+2005年的产品：
+git：分布式的版本控制系统（不需要服务器的存在），没有网络也能实现版本控制
+windows的命令行下：notepad + 文件名
+把当前文件夹变成版本控制的仓库：git init   window查看所有文件夹 dir /a，在来一次git init 会重新初始化仓库
+把文件加入仓库：git add + 文件名 --仅仅是把文件放在了仓库的栈存区
+把多个文件加入：git add  .
+查看状态：git status  ------master放的时最终的版本
+丢弃文件：git rm + 文件
+
+- git init
+- git add <filename1> <filename2>
+- git add .
+- git checkout -- <filename>
+- git checkout -- .
+- git status
+- git config --global user.name <username>
+- git config --global user.email <email>
+- git commit -m 'reason'
+- git log
+- git reset --hard HEAD^
+- git reset --hard <version>
+
+- git remote add origin <url>
+- git push -u origin <branch>
+- git pul
+恢复文件;git ckecout  --
+
+提交：git commit -m + 原因说明 ------已经在本地实现了版本控制
+看到日志：git log
+设置用户名和密码：git config --global user.name=''
+		git config --global user.email  + 'email'
+回到历史版本：git reset --hard HEAD^/后边的版本代号
+
+在网络上下载我的项目：git clone + url
+ 提交本地代码：git push origin master
+取消本地仓库和网络仓库的绑定：git remote remove origin
+git checkout -b alfonso 有alfonso分支就进入分支，没有分支就创建分支，再进入分支  或者 git brabch alfoso     git checkout alfonso
+在本地进行分支的版本控制
+git add .
+git commit -m  "reason"
+切换到master分支 : git checkout naster
+合并分支：git merge --no-ff 分支名   -m  “reason”/git merge alfonso
+删掉分支：git branch -d  分支名---合并过后
+强行删除： git branch -D 分支名----提交之后未合并
+不要S使用fastforward合并：git merge --no-ff   分支名  -m  “reason” 
+查看日志：git log  --graph --pretty=oneline  --abbrev-commit
+查看曾经操作过得所有日志：git    reflog
+

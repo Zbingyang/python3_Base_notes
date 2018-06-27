@@ -1,0 +1,170 @@
+计算机五大硬件：
+运算器/控制器（中央处理器CPU）；存储器（RAM）；输入设备；输出设备（IO设备input/output）
+软件：
+系统软件：操作系统（os）,内核（kernel），提供了人机交互的界面-shell（壳），可能是字符界面，或者图形化界面（GUI）/编译器/解释器/
+应用软件：
+添加用户：adduser + 用户名
+删除用户：userdel + 用户名
+更改密码：passwd
+切换用户：su + 用户名
+退出：exit
+查看当前路径：pwd
+重启和关机：reboot/init 6   init 0 /shutdown
+查看当前目录下的文件和文件夹：ls -l长格式查看 -a查看所有文件 
+参看命令手册：man + 命令
+查看命令的帮助和参数的用法：命令  + --help
+查看命令的简短帮助：whatis + 命令
+适合程序员云度的帮助信息：info + 命令
+
+创建文件夹：mkdir + 文件夹名字
+创建文件：touch + 文件名
+删除空的文件夹：rmdir + 文件名
+删除文件及文件夹：rm + 文件夹名 
+复制文件：cp 文件名 + 需要复制的路径
+移动文件：mv 文件名 + 需要移动的目的路径  在当前的文件下一定到当前文件夹，改了名字，就是一个重命名的操作。
+连接到其他服务器：ssh + 用户名@公网ip 
+退出连接 ： logout
+查看系统名字：uname
+主机名字：hostname
+查看文件信息或者内容：cat + 文件名/路径名  head/tail/more/less
+终止命令：ctrl + c
+把任务停下来放到后台：ctrl + z
+输入结束：ctrl + d
+退格：ctrl + h
+把输入的全部删掉：ctrl + w
+查看所有后台执行的任务：jobs
+把后台第一个任务前置：fg %1
+查看历史命令：history
+再次执行命令：!+命令的编号
+回到用户主目录：cd    cd /root    cd ~
+创建目录：mkdir + 文件名      mkdir -p  + 文件名（可以创建父目录和子目录）
+删除目录：rmdir  + 目录名
+删除：rm + 目录    -r   -f    -i     rm *.html 通配符删除文件
+创建空文件：touch + 文件名  	如果文件已经存在，改变文件最后的访问时间
+回声：echo + 文本 > 文件名      把回声输出到文件里面，新的内容会覆盖旧的内容
+回声：echo + 文本  >> 文件名   输出重定向，在末尾追加,不会覆盖.
+查看shell/查看进程状态：ps（默认bash）
+帮助:man / info / whatis / which / whereis
+联网下载且命名文件： wget + 统一资源通配符  -O 文件的命名
+linux管道，过滤：| +命令
+查找文件名：find + 目录 + -name + "文件的关键字参数"
+查找文件的内容:grep + “要查找的关键词” 目录   -R  -n
+ 创建符号链接：ln 
+	硬链接：ln + 链接的文件（绝对路径） + 链接到的目录，给文件备份，且不浪费空间。
+	软链接：建立快捷方式/ ln -s /etc/centos-release    /root/hello  把centos链接到hello，hello就是centos的快捷方式。
+tgz文件解压缩：gunzip + 文件名---------->变成.tar归档文件
+tar文件压缩：gzip + 文件名
+xz文件的解压缩：xz -d
+xz文件的压缩：xz -z
+解归档：tar -xvf +  文件
+归档：tar -cvf 归档之后的文件名 归档的文件1 归档文件2
+归档：把多个文件合并到一个文件
+解归档：把一个文件拆成多个文件
+压缩：把大文件压缩成尺寸更小的文件
+解压缩：把一个文件还原成原始的尺寸
+=======================================================
+-rwxr--r--:第一个文件所有者可读可写可执行，第二个与文件所有者同组的用户可读，第三个是其他用户可读。
+改变用户对文件的操作：chmod g-w, o-w + 文件（文件所有者u，g表示同组用户，o表示其他用户），失去权限'-’,加上全选'+';链接改不了
+简便写法：chmod 755 （111，101,101）
+umask ：也可以修改权限
+改变文件的所有者：chown + 用户名 + 文件
+排序：cat + 文件 | sort     /sort + 文件（文件本身是没有发生变化的）
+相邻文件去重：cat + 文件 |sort|uniq
+比较两个文件的不同：diff + 文件1    文件2 
+合并两个文件的内容：paste + 文件1   文件2
+把文件内容指定部分剪切：cut  -b  4-10 文件
+查看文件信息：file + 文件
+对文件进行统计：wc + 文件    -l行数  -w单词数   -c 字节数
+给其他用户发消息： write  + 用户名   回车   输入消息
+查看已经安装的程序：yum list installed | grep gcc 
+更新gcc：yum update gcc
+查找nginx：yum search nginx 
+包管理工具：yum 就像软件助手，对一些应用程序的安装，卸载，更新，查找
+用正则表达式查找字符串：grep -E / egrep
+卸载应用程序：yum remove nginx
+检查需要更新的应用程序: yum check-update
+查看软件包的信息：yum info + 软件名
+=====================pm包管理工具======================
+安装：rpm -vhi  文件.rpm
+卸载：rpm - e 文件名
+查看已经安装的：rpm -qa | grep -E <pattern>
+删除所有安装的mysql：rpm -qa | grep mysql |xargs rpm -e(把前面的输出应用于后面的输入)
+安装所有mysql：ls |xarges rom -vhi
+linux系统的安装方法：
+	yum安装
+	rpm安装
+	二进制安装程序（java） 文件.bin
+	配置环境安装：（MongoDB）
+	源代码构建安装：（python3.6.5）
+启动nginx服务器：nginx
+。
+查看帮助：nginx -h
+给服务器发消息：nginx -s stop/reload/quit、
+查看所有进程：ps -aux /ps -ef
+杀进程：master prosess主进程 / kill   进程号
+强制杀除：kill  -9   进程号
+linux系统的/usr/bin下的文件全是可执行程序，一般的软连接都是连到其目录下。在任何地方直接敲连接名，都可以执行。
+====================vim编辑器的一般操作：=====================
+pyhton代码2to3: 2to3 -w 只保留新文件（-n）
+高亮语法：syntax on/off
+tab代表4个空格:set ts=4
+显示行号：set on
+比较多个文件： vim -d 文件1 文件2
+打开多个文件：vim  文件1  文件2
+查看文件的编号： 在末行模式下输入   ls
+切换文件：在末行模式   b 文件对应的编号
+切换窗口 ： ctrl + w
+窗口水平分割： sp
+窗口竖直分割：vs
+删除所有代码 ：末行模式 %d
+输入模式下映射快捷键 :inoremap 按键 if __name__ == "__main__":
+命令模式下映射快捷：map 按键 10000dd
+在vim下执行命令：
+	保存文件 ：在末行模式输入 w 
+	在末行模式下输入！+ 命令 + 参数 
+命令行参数：命令 + 参数
+python的命令行参数：sys.argv
+sys.argv 指针指向当前的命
+path环境变量：把应用程序的安装目录加到pyth环境变量下，在目录的任何位置都能执行
+临时加入环境变量： export PATH=$PATH: ('/usr/local/python3.6/bin')应用程序安装路径的bin目录，这样bin文件下的执行文件就可以随处执行。
+永久性的加入环境变量：1 cd /root 2 vim .bash-profile 3 加入环境变量：PATH=$PATH:/usr/local/python3.6/bin:/root/mongodb-linux-x86_64-amazon-3.6.5/bin
+执行配置文件之后环境变量更新：1 source + .bash_profile 2 重新连接刷新
+别名：alias + 别名 在 .bashrc文件里
+取消别名：unalias + 别名
+==================mysql=========================
+启动mysql：systemctl start mysqld 3306端口
+停止mysql： systemctl stop mysqld
+重启mysql: systemctl restart mysqld
+查看状态：systemctr status mysqld
+自动启动：systemctl enable mysqld
+关闭自动启动：systemctl disable mysqld
+===================防火墙firewalld/iptables===================
+开防火墙：systemctl start firewalld
+关防火墙：systemctl stop mysqld
+查看状态：systemctl status mysqld
+重启防火墙：systemctl restart mysql
+配置防火墙开端口:firewall -cmd --add-port=80/tcp --permanent/--add-serevr=http
+关闭端口：firewall -cmd --remove-port=80/tcp --permanent
+查看端口 :firewall -cmd --list-ports
+
+==================服务器之间的传输服务===============
+sftp root@47.98.160.24
+上传文件：put + 文件名
+下载文件：get + 文件名
+
+退出：exit
+==================scp远程拷贝================
+scp + 文件名 root@47.98.160.14:/root/（绝对路径）
+=========网络相关的命令=======================
+网络状态：netstat -nap 
+检查网络可达性：ping + 域名 -c 5 平百度5次 DDoS 分布式拒绝服务；
+查看ip地址相关的信息：ifconfig  / ip
+
+操作系统为IO操作设置的
+输入阱（输入缓冲区）
+输出阱（输出缓冲区）
+为了避免频繁的IO中断会导致cpu运转效率底下。
+
+计划任务：
+crontab 克龙表
+克龙表达式：crontab -e

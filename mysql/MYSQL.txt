@@ -1,0 +1,92 @@
+应用程序会涉及大量的持久化操作
+持久化：把数据长久的保存起来的过程(把数据从内存转移到能够长久保存数据的存储介质）
+实现数据持久化的操作：
+1.文件的操作---open（）---->read/write
+2. 序列化操作---pickle/dumps/dump /load/loads ---依赖于文件的操作
+3.使用数据库：保存数据和管理数据；
+
+关系型数据库、非关系型数据库
+关系型数据库的特点：
+1. 理论基础：关系代数和集合论
+2. 用二维表组织数据：
+	行--记录/数据
+	列--字段 field/属性
+3.自己的编程语言--SQL--结构化查询语言 Structured Query Language
+4.产品:大型   Orical / DB2  中小型：SQL Server / MYSQL   嵌入式数据库：SQLite
+
+mysql客户端工具:navicate /sqlyog /Toad
+安装：
+---rpm----
+linux配置：
+	1.启动：systemctl start mysqld
+	2.停止：systemctl stop mysqld
+	3.重启：system restart mysqld
+	4.清除登录密码特权: flush privileges;
+	5.修改密码: alter user 'root'@'localhost' identified by '123456';
+	6.查看数据库: sh0w databases;
+	7.查看表：show tables;
+	8.绑定服务器的内网ip
+	bind-address=172.16.110.63 在/etc/my.cnf文件下，在mysqld的行下边去绑定内网地址。
+	
+-- SQL (结构化查询语言)
+--DDL-数据定义语言 - create / drop/ alter
+	1.判断数据库是否已经存在
+	drop database if exists school;
+	2.创建数据库
+	create database school;
+	3.切换数据
+	use school;
+	4.创建表
+	create table 表明(
+	stuid int not null ,
+	stuname varchar(10) not null,
+	stusex bit default 1,
+	stubirth date,
+	primary kry(stuid)
+	);
+--DML-数据操作语言- 
+--DQL-数据查询语言
+--DCL-数据库控制语言
+
+
+1. 为什么要使用关系型数据库；
+目的：在项目中实现数据持久化；
+事务环境:开启事务-begin/start transsction
+锁机制:要么提交，要么回滚释放锁---排他锁
+读数据的时候----共享锁 
+提交：commit
+回滚: rollback
+2. 关系想数据库有什么特点：
+用二维表来装数据库
+3 linux下安装mysql：
+	ls |xargs rpm -ivh
+	rpm-qa |grep mysql|xargs  rpm -e
+在etc/my.cnf
+	bind-adrres=
+	port=
+	maxconnections=
+	skip-grant-tables
+查看进程：
+ps -ef |grep mysqld
+查看端口的占用
+netstat -nap | grep 3306
+4.mysql -u root  -h 47.98.160.14   -p -------- mysql的客户端的工具
+	? contents; -------获取帮助
+	? data types;	
+	? int;
+	? show;
+5.sql语句 DDL/DML/DQL/DCL
+
+create/drop/alter
+update/insert/delete
+select/as/like/where/group by/order by(asc/desc)/
+grant/revoke/begin/commit/rollback/
+
+6.python----->mysql
+	pymysql
+ 
+
+
+
+
+
