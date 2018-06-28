@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function foo(){
+				
+				alert(arguments.callee)
+				alert(arguments.callee.caller)
+				return arguments[0] + arguments[1];
+				
+			}
+			alert(foo(1,2))
+
+		</script>
+		
+	</body>
+</html>

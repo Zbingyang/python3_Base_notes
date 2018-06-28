@@ -1,0 +1,38 @@
+<!--BOM浏览器对象模型-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+//				弹框输入
+			var name = window.prompt('请输入你的名字：');
+			//三元条件运算可以代替简单的(if else);
+			//(name != 'null' && name.trim() != '')
+			/*mag = name != 'null' && name.trim() != '' ?
+			 * trim()去掉字符串的空格
+			 *window.alert('你好'+name +'!'):window.alert('大家好!');
+			*/
+			if(name.length>0){
+				window.alert('你好'+name +'!');
+			}
+			else{
+			window.alert('大家好!');	
+			}
+			
+			if(window.confirm('确定你要退出吗')){
+				//关闭浏览器
+				window.close();
+			}else{
+				//打开浏览器
+//				window.open('http://www.baidu.com','百度一下')
+				window.print()
+			}
+			//===moveto  \moveby
+			
+		</script>
+	</body>
+</html>

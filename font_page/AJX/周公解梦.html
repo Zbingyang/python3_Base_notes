@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>周公解梦</title>
+	</head>
+	<body>
+		<input id="txt" type="text" placeholder="请输入您梦到了什么！">
+		<button id="btn1">确认</button>
+		<script src="js/my_lib.js"></script>
+		<script>
+			(function(){
+				bind($('btn1'),'click',function(){
+					var word = $('txt').value;
+					var url = 'http://api.tianapi.com/txapi/dream/?key=439dde45e7b43fd22d994a1891b60ff7&word=';
+						url += encodeURIComponent(word);
+					var xhr = new XMLHttpRequest();
+				
+				if (xhr){
+				//=====================创建异步请求的对象======================
+					xhr.open('get',url,true);
+				//========================创建请求==========================
+					xhr.send();
+				//==============当服务器响应成功的时候部分网页需要刷新=============
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4 && xhr.status){
+						var json = JSON.parse(xhr.responseText);
+						var contents = json.newslist;
+						for(var i=0;i<contents.length;i+=1){
+							content = contents[i];
+							var text_content = content.result;
+							p = document.createElement('p');
+							p.textContent = text_content;
+							document.body.appendChild(p);
+						}
+					}
+				};
+				};
+				
+					
+				});
+			}());
+		</script>
+	</body>
+</html>

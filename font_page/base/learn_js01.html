@@ -1,0 +1,36 @@
+
+<!--javascript的简称js,是一门专门用来操作网页额的脚本语言，脚本语言：是解释性语言，是动态语言。
+	高级语言：是编译执行的语言。
+	javascript代码写在哪里：内联 ：写在标签中：
+						内部：可以放在html的任何位置，推荐放在body的最后。
+						外接：外部js，再用link标签导入，通过<script crc="路径"></script> 来导入
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js学习01</title>
+		<!--<script>
+			alert("nihao")
+		</script>-->
+	</head>
+	<body>
+	
+		<p id="p1"></p>
+		
+		<!--<script>
+			alert("nihao")
+		</script>-->
+	</body>
+	<!--======================js的输出函数()==========================-->
+	<script>
+		//============第一种弹出对话框显示内容==============
+			alert("nihao");
+		//==============第二种从浏览器控制台输出================
+			console.log('hello word!');
+		//==============第三种写入到网页中======================
+			document.write("<p>hello word</p>");
+		//==============第四种显示在指定的标签中================
+			document.getElementById('p1').textContent = "hello word"
+	</script>
+</html>

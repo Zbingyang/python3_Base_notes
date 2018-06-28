@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<style>
+
+		#one{
+			width: 50px;
+			height: 100px;
+			background-color: #00FFFF;
+			position: fixed;
+		}
+
+	</style>
+	<body>
+		<div id="one"><a id="two" href="javascript:void(0);">x</a></div>
+		</div>
+		<script type="text/javascript" src="js/my_lib.js" ></script>
+		<script>
+			(function(){
+				var counter = 0;
+				bind($('two'),'click',function(){
+					counter += 1;
+					if(counter ==1){
+						window.open("http://www.baidu.com");
+					}
+					else if(counter == 2){
+						window.open("http://www.tengxun.com");
+					}
+					else{
+						$('one').style.display = 'none';
+					}
+				});
+			}());
+		</script>
+	</body>
+</html>

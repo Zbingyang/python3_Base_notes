@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.plane{
+				width: 100px;
+				height: 130px;
+				background-image: url('img/hero1.png');
+			}
+		</style>
+	</head>
+	<body>
+	</body>
+	<script src='js/jquery.min.js'></script>
+	<script>
+		function Plane(x,y,speed,){
+			this.x = x,
+			this.y = y,
+			this.speed = speed
+		}
+		Plane.prototype.change = true;
+		Plane.prototype.init = function(){
+			this.div = $('<div>').addClass('plane').css({'left':this.x +'px','top':this.y + 'px'});
+	
+			$(document.body).append(this.div);
+		}
+		Plane.prototype.fly = function(){
+			var img = this.change ? 'img/hero2.png':'img/hero1.png';
+			this.y -= speed;
+			this.div.css('background-image','url(' + img +')')
+			.css('top',this.y + 'px');
+		}
+		$(function(){
+			var planes =[];
+			for(var i = 0;i < 10;i += 1){
+				var speed = parseInt(Math.random() * 7) + 2;
+				var plane = new Plane(100 + 120 * i,650,speed);
+				plane.init();
+				planes[i] = plane;
+			}
+		})
+			window.setInterval(function (){
+				for(var i = 0;i < planes.length; i += 1){
+					planes[i].fly();
+				}
+			},50)
+		
+		
+		
+		
+	</script>
+</html>

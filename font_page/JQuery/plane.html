@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#one {
+				position: absolute;
+				left: 500px;
+				top: 500px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="one">
+			<img src='img/hero1.png' />
+		</div>
+		</div>
+		<button id='add'>开始</button>
+		<script src="js/jquery.min.js"></script>
+		<script>
+			$('#add').one('click', function() {
+				var num = true;
+				window.setInterval(function() {
+//					var originY = $('#one').css('top');
+//					var nowY = (parseInt(originY) - 5) + 'px';
+//					$('#one').css('top', nowY);
+					var Y = $('#one').offset().top;
+					var newY = (parseInt(Y) - 5) + 'px';
+					$('#one').css('top',newY);
+					if(num) {
+						$('#one img').attr('src', 'img/hero2.png');
+					} else {
+						$('#one img').attr('src', 'img/hero1.png');
+					}
+					num = !num;
+
+				}, 200)
+			})
+			
+				
+				
+		
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form>
+			<label>你的爱好</label>
+			<input type="checkbox" name="fav">旅游
+			<input type="checkbox" name="fav">游戏
+			<input type="checkbox" name="fav">美食
+			<input type="checkbox" name="fav">看书
+			<input type="checkbox" name="fav">钓鱼
+			<input type="checkbox" name="fav">睡觉
+			<a href="javascript:void(0);">全选</a>
+			<a href="javascript:void(0);">取消</a>
+			<a href="javascript:void(0);">反选</a>
+		</form>
+		<script>
+			(function(){
+				var all= document.querySelectorAll('form a');
+				var all_list = document.querySelectorAll('input[name=fav]');
+				all[0].addEventListener('click',function(){
+					for(var i=0;i<all_list.length;i+=1){
+
+						all_list[i].checked = true;
+					}
+				});
+				all[1].addEventListener('click',function(){
+					for(var i=0;i<all_list.length;i+=1){
+
+							all_list[i].checked = false;
+					}
+				});
+				all[2].addEventListener('click',function(){
+					for(var i=0;i<all_list.length;i+=1){
+						all_list[i].checked = !all_list[i].checked;
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>

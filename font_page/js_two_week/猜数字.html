@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+				padding: 0;
+				position: relative;
+			}
+			#blue{
+				width: 100px;
+				height: 50px;
+				position: absolute;
+				top: 60px;
+				left: 50px;
+				border: none;
+				border-bottom: solid #00FFFF;
+				background-color: #FFFF00;
+				outline: none;
+			}
+			#btn1{
+				height: 50px;
+				width: 80px;
+				position: absolute;
+				top: 62px;
+				left:150px;
+				background-color: #00FFFF;
+				border: none;
+			}
+			#btn2{
+				height: 50px;
+				width: 80px;
+				position: absolute;
+				top: 62px;
+				left:230px;
+				background-color:#00FFFF;
+				border: none;
+			}
+			#append{
+				position: absolute;
+				top: 100px;
+				left: 50px;
+				width: 300px;
+				height: 500px;
+				background-color: antiquewhite;
+			}
+		</style>
+	</head>
+	<body>
+		<input id="blue" type="text" value="" placeholder="请输入你的数字"/>
+		<button id="btn1">+</button>
+		<button id="btn2">刷新</button>
+		<div id="append"></div>
+		<script src="js/my_lib.js"></script>
+		<script>
+			//绑定函数不能加加括号，这里不是调用函数，而是绑定函数；
+		(function() {
+			var code = 0;
+			var btn1 = $('btn1');
+			var com_num = parseInt(Math.random() * 100);
+			var counter = 0;
+			var btn2 = $('btn2');
+			var first_content = $('append');
+
+			function guess() {
+				counter += 1;
+				var p = document.createElement('p');
+				peo_num = $('blue').value;
+				num_num = parseInt(peo_num);
+				var text_content = '';
+				if(peo_num == num_num) {
+					if(com_num > peo_num) {
+
+						text_content += '你猜的数字是:' + peo_num + '大一点';
+						p.textContent = text_content;
+						//				first_content.textContent = text_content;
+
+						first_content.appendChild(p);
+					} else if(com_num < peo_num) {
+						text_content += "你猜的数字是:" + peo_num + '小一点';
+						p.textContent = text_content;
+						first_content.appendChild(p);
+					} else {
+						text_content += '你猜的是' + peo_num + '恭喜你猜对了';
+						p.textContent = text_content;
+						first_content.appendChild(p);
+					}
+					if(counter > 7) {
+						text_content = '你的智商有点捉急，倪国佳给事小的';
+					} 
+					}
+				else {
+						alert('输入的有问题，你个小傻逼！！！！！！！！！！');
+					}
+					$('blue').value = '';
+					$('blue').focus();
+				};
+			
+
+				$('blue').addEventListener('keypress', function(evt) {
+					var text_content = '';
+					code = evt.keyCode;
+					console.log(code);
+					if(code == 13) {
+						guess();
+					} else if(48 > evt.keyCode || evt.keyCode > 57) {
+						var val = $('blue').value;
+						$('blue').value = handInput(val);
+					}
+				});
+
+				btn1.addEventListener('click', guess);
+
+				btn2.addEventListener('click', function() {
+					counter = 0;
+					$('blue').textContent = ''
+					btn1.disabled = false;
+					$('blue').disable = false;
+					com_num = parseInt(Math.random() * 100);
+					
+				});
+			
+		}());
+		</script>
+	</body>
+</html>

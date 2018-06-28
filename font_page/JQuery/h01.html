@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+		<style>
+			#av{
+				widows: 500px;
+				height: 200px;
+				text-align: center;
+				display: none;
+				position: relative;
+			}
+			p {
+				width: 200px;
+				font-size: 20px;
+				background-color: blue;
+				color: white;
+				position: relative;
+				top: 250px;
+				text-align:center ;
+			}
+		</style>
+	<body>
+		<div id='av'><img src='img/20180428111317903.jpg'></div>
+		<div id="poem">
+			<p>床前明月光</p>
+			<p>疑是地上霜</p>
+			<p>举头望明月</p>
+			<p>低头思故乡</p>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script>
+			$(function(){
+				$('#av').fadeIn(3000);
+				$('#av').on('click',function(){
+					$('#av').fadeOut(3000);
+				});
+				$('#poem p').on('click',function(evt){
+					$('#poem p').css('background-color','blue');
+					$(evt.target).css('background-color','red')
+				})
+			}())
+		</script>
+	
+	</body>
+</html>

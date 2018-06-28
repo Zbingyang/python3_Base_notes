@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+			<style>
+			#big li{
+				width: 150px;
+				height: 30px;
+				background-color: #00FFFF;
+				color: white;
+				list-style: none;
+			  	border: 1px solid lightcyan;
+			  	text-align: center;
+			  	font: bold;
+			  	position: relative;
+			  	
+			}
+			#big li img:link{color:white;}
+			#big li img:visited{color: white;}
+			
+			#big li img{
+				text-decoration: none;
+				color: white;
+				/*margin-left: 50px;*/
+			}
+			#big li span{
+				width: 10px;
+				height: 5px;
+				color:white;
+				font-size: 5px;
+				position: absolute;
+				left:45px;
+				top: 10px;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="big">
+			<ul id="fruit">
+				<li id="fruit1">西瓜<img src="img/xx.png"></li>
+				<li id="fruit2">芒果<img src="img/xx.png"></li>
+				<li id="fruit3">杨梅<img src="img/xx.png"></li>
+				<li id="fruit4">青枣<img src="img/xx.png"></li>
+			</ul>
+		<input id="txt" type="text" placeholder="请输入"/>
+		<button id="btn1">+</button>
+		<button id="btn2">-</button>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script>
+			var index = 4;
+			$(function(){
+				$('#fruit li').on('click',function(evt){
+					var txt = $(evt.target).attr('id');
+	
+					$(this).append($('<span>').text(txt));
+				});
+			});
+		</script>
+		<!--===================JQuery的$函数的用法==========================-->
+		<!--如果$的参数是一个函数，那么这个函数是整个文档加载完成以后要执行的回调函数;
+			
+		  --如果$的参数是选择器字符串，那么$函数会返回代表对应的标签的jquery的对象;
+			
+		  --如果$函数的参数是一个原生js对象,那么$函数会返回与之对应的jquery对象;
+			
+		  --如g果$函数的参数是一个标签字符串,那么$函数会创建对应的标签元素,而且返回jquery对象;
+		  
+		==========原生js对象和jquery的相互转换==================
+			原生js对象------jquery:$(原生js对象)
+			jquery对象-----原生js对象:jquery对象.get(index)
+			jquery对象本身是一个"数组";
+		-->
+		<script>
+			$(function(){
+				$('#fruit img').one('click',function(evt){
+					//元素.parent()找到元素的父节点
+					index -= 1;
+					$(evt.target).parent().remove();
+					
+				});
+			});
+			
+			/*
+			 val() 方法返回或设置被选元素的 value 属性。
+			当用于返回值时：
+			$(selector).val()
+			该方法返回第一个匹配元素的 value 属性的值。
+			当用于设置值时：
+			$(selector).val(value);
+			该方法设置所有匹配元素的 value 属性的值。
+			$(selector).val(function(index,currentValue));
+			注意：val() 方法通常与 HTML 表单元素一起使用。
+			*/
+			$(function(){
+				$('#btn1').on('click',function(){
+				//=============在没有传参数的时候取value的属性============
+				//=============传入参数的时候就是给文本框传值进去===========
+					var fruit = $('#txt').val().trim();
+				
+					if(fruit.length>0){
+						index += 1;
+				//================创建新的标签=============================
+						$('#fruit').append(
+				//===================jquery对象.text()给元素写入文本=============
+							$('<li>').text(fruit).attr('id','fruit'+index).append(
+				//=========父级元素.append(子元素),就是把子元素添加到父级元素中；
+	$('<img>').attr('src','img/xx.png').on('click',function(evt){
+							
+							$(evt.target).parent().remove();
+							index -= 1;
+							
+						})));
+					}
+				});
+			});
+			
+			$(function(){
+				//=========each()方法让返回的多个jquery对象都绑定回调函数;========
+				$('#fruit li').hide().each(function(index){
+				//==========delay延迟方法===================
+					$(this).delay(600* index).fadeIn(600);
+				});
+			});
+			
+//			$(function(){
+//				$('#fruit img').on('click',function(evt){
+//					$(evt.target).parent().animate({'left':'slow'});
+//				});
+//			});
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

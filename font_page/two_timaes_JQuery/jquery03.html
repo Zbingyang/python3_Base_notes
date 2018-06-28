@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="load_button">加载</button>
+	</body>
+	<script src="js/jquery.min.js"></script>
+	<script>
+		var url = 'http://api.tianapi.com/meinv/?key=439dde45e7b43fd22d994a1891b60ff7&num=10';
+		$('#load_button').on('click',function(){
+			//=======================$.ajax()来请求==========================
+			$.ajax({
+				//==================请求方式get============================
+				type:"get",
+				//===================url统一资源定位符=======================
+				url:"http://api.tianapi.com/meinv/",
+				//==================数据的类型========================
+				data:{
+				key:"439dde45e7b43fd22d994a1891b60ff7",
+				num:10,
+				dataType:"json",
+				//==================请求成功调用回调函数=================
+				success:function(){
+					$.getJSON(url,function(json){
+//			//=====================循环取出每张图片的url===================
+				for(var i=0;i<json.newslist.length;i+=1){
+					var mm = json.newslist [i];
+//			//=====================拿到一个url时就创建一个img标签==========
+					$('<img>').attr('src',mm.picUrl).insertBefore($('#load_button'));
+				}
+			});
+					
+				},
+			//===================请求失败调用回调函数======================
+				error:function(){}
+				
+				}
+			});
+//			//=======================得到请求的响应的内容====================
+//			$.getJSON(url,function(json){
+//			//=====================循环取出每张图片的url===================
+//				for(var i=0;i<json.newslist.length;i+=1){
+//					var mm = json.newslist [i];
+//			//=====================拿到一个url时就创建一个img标签==========
+//					$('<img>').attr('src',mm.picUrl).insertBefore($('#load_button'));
+//				}
+//			});
+		});
+	</script>
+</html>

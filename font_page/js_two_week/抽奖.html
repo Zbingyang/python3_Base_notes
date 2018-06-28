@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>手机抽奖</title>
+		<style>
+			body{
+				margin: 0;
+				padding: 0;
+				position: relative;
+			}
+			input{
+				width: 20px;
+			}
+			#end{
+				position: absolute;
+				right: 45%;
+				margin-top: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="end">
+			<input type="text" value="1"/>
+			<input id='one' type="text"/>
+			<input id="two" type="text"/>
+			<input id='three' type="text" value="*"/>
+			<input id='four' type="text" value="*"/>
+			<input id='five' type="text" value="*"/>
+			<input id='six' type="text" value="*"/>
+			<input id='seven' type="text"/>
+			<input id='eight' type="text"/>
+			<input id='nine' type="text"/>
+			<input id='ten' type="text"/><br />
+			
+		</div>
+		<div>
+		<button onclick="btn1()">开始</button>
+
+		<button onclick="btn2()">停止</button>
+		</div>
+			
+		<script>
+			function btn1(){
+				var num = 0;
+				var time_id = setInterval(function(){
+					var list1 = [3,4,5,8,9];
+					num += 1;
+					num %= 5;
+					var two = list1[num];
+						three = parseInt(Math.random()*10);
+						four = parseInt(Math.random()*10);
+						five = parseInt(Math.random()*10);
+						six = parseInt(Math.random()*10);
+						seven = parseInt(Math.random()*10);
+						eight = parseInt(Math.random()*10);
+						nine = parseInt(Math.random()*10);
+						ten = parseInt(Math.random()*10);
+						eleven = parseInt(Math.random()*10);
+
+					document.getElementById('one').value = two;
+					document.getElementById('two').value = three;
+					document.getElementById('three').value = four;
+					document.getElementById('four').value = five;
+					document.getElementById('five').value = six;
+					document.getElementById('six').value = seven;
+					document.getElementById('seven').value = eight;
+					document.getElementById('eight').value = nine;
+					document.getElementById('nine').value = ten;
+					document.getElementById('ten').value = eleven;
+			},100);
+			function clear(){
+				clearInterval(time_id)
+			}
+			}
+			
+			function btn2(){
+				clear()
+			}
+			
+		</script>
+	</body>
+</html>

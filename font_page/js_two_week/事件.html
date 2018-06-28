@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	
+	</body>
+</html>
+事件
+addEventListener(en, fn, [true])
+removeEventListener(en, fn)
+attachEvent('on' + en, fn)
+detachEvent('on' + en, fn)
+
+click / mouseover / mouseout / mousemove
+keydown / keyup / load / unload / change
+
+冒泡和捕获
+function(evt) {
+    evt = evt || window.event;
+    target = evt.target || evt.srcElement;
+}
+// 阻止事件传播
+evt.stopPropagation()
+evt.cancelBubble = true
+// 阻止事件的默认行为
+evt.preventDefault()
+evt.returnValue = false
+
+17:00:07
+Hao 2018/6/12 17:00:07
+从页面上获取元素(标签)的方法
+document
+    - getElementById / querySelector
+    - getElementsByTagName / getElementsByName
+    - getElementsByClassName / querySelectorAll
+添加和删除元素
+    - var li = document.createElement('li')
+    - ul.appendChild(li)
+    - ul.removeChild(li)
+操作元素的内容和属性
+element
+    - textContent / innerHTML
+    - element.id / element.src / element.href
+    - removeAttribute() / setAttribute()
+    - getAttribute() 

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#tel{
+				width: 500px;
+				height: 100px;
+				text-align: center;
+				font: bolder 72px/100px Arial;
+				margin: 50px auto;
+				background-color: blue;
+				color: yellow;
+			}
+		#buttons{
+			width: 500px;
+			margin: 0 auto ;
+			text-align: center;
+		}
+		#buttons > button{
+			display: inline-block;
+			width: 120px;
+			height: 40px;
+			background-color: red;
+			color: white;
+			font: 28px/40px "微软雅黑";
+			border: none;
+			margin: 0 20px;
+		}
+		</style>
+	</head>
+	<!--======高类聚，低偶合(heigh cohession low couping)========-->
+	<body>
+		<div id="tel">123456789013</div>
+		<div id="buttons">
+			<button id="startButton">开始</button>
+			<button id="stopButton">停止</button>
+		</div>
+		<script>
+			var tels = [];
+			for(var i=0;i<100;i+=1){
+				tel = '13';
+				for(var j=0;j<9;j+=1){
+					tel += parseInt(Math.random() * 10);
+				}
+				tels[i] = tel;
+			}
+			var startButton = document.getElementById('startButton');
+			var stopButton = document.getElementById('stopButton');
+			//设置一个全局变量，让其去存储time_id；
+			var time_id = 0;
+			var lucky_tel = '';
+			//绑定事件回调函数 ；给标签绑定事件回调函数，当事件发生时，让事件去调用(callback)
+			//知道事件发生的时候做什么事情，但我不知道什么时候事件会发生，就用回调函数(当事件发生时自动调用)
+			//具有非常好的浏览器的兼容性，但是不是最好的解决方法;
+			//window对象的属性：settimeout\setinterval\alert\prompt\confirm\
+			//document/location浏览器的地址栏\history历史记录\screen\navigator\
+			startButton.onclick = function(){
+				time_id = setInterval(function (){
+					var index = parseInt(Math.random() * tels.length);
+					lucky_tel = tels[index];
+					//substring字符串取子字符串和python的列表的使用下标是一样的；
+					display_tel = lucky_tel.substring(0,3)+'****'+lucky_tel.substring(7,11)
+					document.getElementById('tel').textContent = display_tel;
+				},50)
+			};
+			stopButton.onclick = function(){
+				clearInterval(time_id);
+				alert('被抽中的幸运号码是:'+ lucky_tel);
+			};
+			//
+		</script>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1 id="message">hello world</h1>
+		<button id="btn">0</button>
+		<script>
+			var counter = 0;
+			var btn = document.getElementById('btn');
+			function f1 (){
+				alert('按钮被点击了')
+			};
+			function f2(){
+				counter += 1;
+				document.getElementById('btn').textContent = counter;
+			}
+			function f3() {
+//=======================浏览器的解绑的兼容性问题========================================
+				if (btn.removeEventListener){
+					document.getElementById('message').textContent = 'goo bye';
+					btn.removeEventListener('click',f1);
+				}
+				else{
+//========================IE浏览器===================================================
+					btn.detachEvent('onclick',f1);
+				}
+//=========================事件的解绑定removeEventListenner================================
+			}
+
+//			btn.onclick = function(){
+//				f1();
+//				f2();
+//				f3();
+//			}
+//=================绑定事件监听器,方便于事件的绑定addEventListener==========================
+//=============addEventListener的兼容性问题===========================================
+			if (btn.addEventListener){
+				btn.addEventListener('click',f1)
+				btn.addEventListener('click',f2)
+				btn.addEventListener('click',f3)
+			};
+			else{
+//========================IE浏览器===================================================
+				btn.attachEvent('onclick',f1);
+				btn.attachEvent('onclick',f2);
+				btn.attachEvent('onclick',f3);
+			}
+			
+		</script>
+	</body>
+</html>

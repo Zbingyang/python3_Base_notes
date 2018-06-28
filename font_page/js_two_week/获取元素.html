@@ -1,0 +1,51 @@
+<!--
+ ===========================从页面上获取元素\标签的方法：=============================
+ ==========================拿到单个元素===========================
+	getElementById() \querySelector();
+	===========================以下是拿到的多个元素==================
+	getElementsByTagName()\\getElementsByClassName();
+	querySelectorAll()\\getElementsByName();
+
+element-
+		---textContent(文本)\innerHtml(可以带标签)\
+		---element.id\element.src\element.href
+		 ------removeAttribute()
+		---getAttribute()/setAttribute()
+	
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>list</title>
+	</head>
+	<body>
+		<!--div#page>ul>li.hot*4>{item $}-->
+		<div id="page">
+		<h1 id="header">list</h1>
+		<h2>Buy groceries</h2>
+		<ul>
+			<li id="one" class="hot"><em>fresh</em>figs</li>
+			<li id = "two" class="hot">pine nuts</li>
+			<li id="three" class="hot">honey</li>
+			<li id="four">balsamic vinegar</li>
+		</ul>
+		</div>
+		<script src="js/list.js"></script>
+		<script>
+//			var elem = document.querySelectorAll('#page .hot');
+//			for(var i=0;i<elem.length;i+=1){
+//				alert(elem[i].innerHTML);
+//			}
+//			//用样式表的选择器来查找元素，取到的是所有满足条件的元素
+//			var elem = document.querySelectorAll('#page li');
+//			for(var i=0;i<elem.length;i+=1){
+//				alert(elem[i].innerHTML);
+//			}
+//			//取到满足条件的一个元素，且从开是查找，且找出的是第一个匹配的元素
+//			var ene = document.querySelector("#one>em");
+//			alert(ene.textContent);
+		</script>
+	</body>
+</html>

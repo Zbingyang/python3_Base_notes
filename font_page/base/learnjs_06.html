@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>函数的基础</title>
+	</head>
+	<body>
+		<button onclick="btn()">点我啊</button>
+		<script>
+			//================函数function()=====================
+			/*
+			function 函数名(参数1,参数2,参数3,参数4){
+				函数体(实现函数的功能)
+			}
+			   函数只有在调用时才会执行
+			*/
+			function btn(){
+				alert('hello')
+			}
+			function add(num1,num2){
+				return (num1+num2)
+			}
+			console.log(add(12,34));
+			//js的函数可以作为值传给变量
+			var f = add;
+			console.log(f(1,2));
+			//prototype:给类添加方法
+			//js中的类：Number，String，Date，Array，Object，boolean，function，
+			//类名.prototype.函数名 = function(参数){}
+			Number.prototype.sum = function(num) {
+				return this + num;
+				
+			};
+			//js中的this就相当于python中的self，谁去调用这个函数，this就指向谁 
+			var a = 20;
+			var b = a.sum(30);
+			console.log(a)
+			
+		</script>
+	</body>
+</html>

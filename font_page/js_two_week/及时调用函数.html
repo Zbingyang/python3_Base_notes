@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//调用匿名函数，把函数赋给一个变量，然后通过变量()调用
+			num = function(){
+			return 1
+		}
+			num()
+			//=======================及时调用函数=================
+			(function(n){
+				for (var i=0;i<n;i+=1){
+					alert(n);
+					alert('ok');
+				};
+			}(3));
+		</script>
+	</body>
+</html>

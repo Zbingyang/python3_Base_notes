@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<a href="http://www.baidu.com">百度一下</a>
+		<script>
+			//返回一个列表，返回所有的a标签
+			var alist= document.getElementsByTagName('a');
+			alert(alist[0].href);
+			alist[0].addEventListener('click',function (evt){
+//				alert('hello');
+				evt = evt || window.evt;
+				if(!confirm('真的要去百度吗')){
+					//阻止事件的默认行为；
+				if(evt.preventDefault){
+					evt.preventDefault();
+					}
+				else{
+					evt.returnValue = false;
+				}
+				}
+			});
+/*
+						事件
+						addEventListener(en, fn, [true])
+						removeEventListener(en, fn)
+						attachEvent('on' + en, fn)
+						detachEvent('on' + en, fn)
+						
+						click / mouseover / mouseout / mousemove
+						keydown / keyup / load / unload / change
+						
+						冒泡和捕获
+						function(evt) {
+						    evt = evt || window.event;
+						    target = evt.target || evt.srcElement;
+						}
+						// 阻止事件传播
+						evt.stopPropagation()
+						evt.cancelBubble = true;
+						// 阻止事件的默认行为
+						evt.preventDefault()
+						evt.returnValue = false;
+ * */
+		</script>
+	</body>
+</html>

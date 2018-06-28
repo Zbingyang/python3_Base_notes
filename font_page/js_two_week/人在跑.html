@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>人在跑 93 * 132</title>
+		<style>
+			body{
+				margin: 0;
+				padding: 0;
+				/*display: flex;*/
+			}
+			#find{
+				width:95px ;
+				height: 132px;
+				/*background-color: #00FFFF;*/
+				margin: auto;
+				margin-top:300px;
+				/*align-self: center;*/
+			}
+		</style>
+	</head>
+	<body>
+		<div id="find">
+			<img id="run" src="img/runner0.jpg" />
+		</div>
+		<script>
+			var num = 0;
+			setInterval(function(){
+				num += 1;
+				num %= 5;
+				var people = document.getElementById('run');
+				people.src ='./img/runner' + (num) +'.jpg';
+			},100)
+		</script>
+	</body>
+</html>

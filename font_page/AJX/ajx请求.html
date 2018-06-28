@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<button id="loadBtn">加载</button>
+		<script src="js/my_lib.js"></script>
+		<script>
+			(function() {
+				bind($("loadBtn"), "click", function() {
+					var xhr = new XMLHttpRequest();
+					if(xhr) {
+						var url = 'http://api.tianapi.com/meinv/?key=439dde45e7b43fd22d994a1891b60ff7&num=10';
+
+						//第一个参数：请求的方式get或post
+						//第二个参数是资源对应的URL
+						//第三个参数 true表示异步请求
+						xhr.open('get', url, true);
+						
+						xhr.send();
+						xhr.onreadystatechange = function() {
+							if(xhr.readyState == 4 && xhr.status == 200) {
+								var json = JSON.parse(xhr.responseText);
+								var mmlist = json.newslist;
+								for(var i = 0;i<mmlist.length;i += 1) {
+									var mm = mmlist[i];
+									var img = document.createElement('img');
+									img.src = mm.picUrl;
+									img.style.width = 300;
+									document.body.appendChild(img);
+								}
+							}
+
+						};
+
+						
+					} 
+					else {
+						alert("你是狗屎")
+					}
+
+				});
+
+			}());
+		</script>
+	</body>
+
+</html>

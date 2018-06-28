@@ -1,0 +1,68 @@
+<script>
+	//数学运算符 比较运算符 逻辑运算符 
+	//=======数学运算符；+; -; *; /; %; ++; --;
+	var a = 10;
+	var b = 12.5;
+	//如果是数字就是求和运算
+	var c = a + b;
+	console.log(c);
+	//如果+号两边有字符串,就做字符串运算，就算有一个变量的值不是字符串她也会转换成字符串，再连接。
+	var d = 'aaa';
+	var e = 'bbb';
+	var f = d + e;
+	console.log(f);
+	console.log(f+100)
+	//	console.log('*'* 5) 的运算的值是不存在的;
+	
+	//'++' 就是 '+='
+	var num = 10;
+	//自加1操作
+	
+	num ++;
+	console.log(num);
+	//自减1操作
+	//======不管是放在变量前面还是后面都实现自加1或者自减的功能；
+	//m = n++ 先再赋值再加1的操作； m = n,n += 1,
+	//m = ++n 先加1的操作再赋值； n += 1,m = n,
+//	var num = 10;
+	num --;
+	console.log(num);
+	
+	//==========================比较运算符 "> < = == != >= <= === !=="
+	console.log(10 > 20);
+	console.log(10 < 20);
+	console.log(5 >= 4);
+	console.log(5 <= 5);
+	console.log('abc'>'aaa');
+	console.log('abc'<'abb');
+	//==判断值是否相等
+//	console.log(5==5);  true
+//	console.log('5'==5); true
+	//！=判断值是否不相等
+	console.log(5!=5);
+	console.log('****************************')
+//===判断的值和类型是否相等，这是绝对相等；
+	console.log(5===5);  
+	console.log('5'===5); 
+	console.log('****************************')
+	//是否不绝对相等
+	console.log(5!==5);
+	console.log('5'!==5);
+	
+	//=========================逻辑运算符========================
+	//python and、or、not、返回的结果只布尔值
+	//js &&(逻辑与), ||(逻辑或),!(逻辑非) js中没有短路操作
+	
+	
+</script>
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>运算符</title>
+	</head>
+	<body>
+	</body>
+</html>

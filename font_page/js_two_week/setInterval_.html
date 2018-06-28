@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin: 0;
+				padding: 0;
+				position: relative;
+			}
+			#time{
+				width: 500px;
+				height: 200px;
+				background-color: aqua;
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="time"></div>
+		<script>
+			var weekdays = ['日','一','二','三','四','五','六'];
+			window.setInterval(function(){
+				//==============new 创建对象的关键字===================
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = date.getMonth() + 1;
+				var day = date.getDate();
+				var hour = date.getHours();
+				var minute = date.getMinutes();
+				var second = date.getSeconds();
+				var weekday = weekdays[date.getDay()];
+				var full_str = year + '年' +
+					(month<10?'0' + month:month) + '月'+
+					(day <10? '0'+day : day) + '日'+
+					(hour<10?'0'+hour:hour) + ':'+
+					(minute<10?'0'+minute:minute)+ ':'+
+					(second<10?'0'+second:second) +
+					'星期' + weekday
+				document.getElementById('time').textContent = full_str;
+				
+			},1000);
+		</script>
+	</body>
+</html>

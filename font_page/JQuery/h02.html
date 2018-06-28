@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#fruits li {
+				width: 180px;
+				height: 40px;
+				list-style: none;
+				background-color: darkolivegreen;
+				color: white;
+				text-align: center;
+				font: 22px/40px "微软雅黑";
+				border-bottom: 1px solid lightgray;
+			}
+			
+			#fInput {
+				margin-left: 40px;
+			}
+			
+			#fruits~input {
+				height: 30px;
+				font: 14px/30px "微软雅黑";
+			}
+			
+			input[type=button] {
+				border: none;
+				background-color: red;
+				color: white;
+			}
+			
+			#fruits a {
+				position: relative;
+				left: 30px;
+				display: inline-block;
+				width: 15px;
+				height: 15px;
+				background: url(img/ui-icons-trans.png) no-repeat -95px -130px;
+			}
+			
+			#adv {
+				position: fixed;
+				top: 100px;
+				right: 50px;
+				width: 150px;
+				height: 150px;
+				color: yellow;
+				background-color: blue;
+			}
+			
+			#closeBtn {
+				border: 1px solid gray;
+				float: right;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="adv">
+			<button id="closeBtn">关闭</button>
+		</div>
+		<h2>水果列表</h2>
+		<hr>
+		<ul id="fruits">
+			<li>苹果
+				<a href="javascript:void(0);"></a>
+			</li>
+			<li>葡萄
+				<a href="javascript:void(0);"></a>
+			</li>
+			<li>榴莲
+				<a href="javascript:void(0);"></a>
+			</li>
+		</ul>
+		<input type="text" id="fInput">
+		<input type="button" value="添加" id="addBtn">
+		<script src='js/jquery.min.js'></script>
+		<script>
+			$(function() {
+				function removeItem(evt) {
+					var li = evt.target.parentNode;
+					$('#fruits').removeChild(li);
+				}
+
+				$('#addBtn').on('click', function() {
+					var fruitName = $('#fInput').val().trim();
+					if(fruitName != '') {
+					var li = $('<li>').text(fruitName)		
+					var a = $('<a>').attr('href','javaScript:void(0)');
+						li.append(a);
+						$('#fruits').append(li);
+						$('#fInput').value = '';
+						$('#fInput').focus();
+					}
+				})
+			})
+		</script>
+	</body>
+
+</html>

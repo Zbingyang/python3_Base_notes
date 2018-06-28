@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>while循环  for循环 </title>
+	</head>
+	<body>
+		<script>
+			//js的循环  for循环         while循环
+			//=====================for==============
+			/*
+			 * 形式一：
+			 for(表达式1,条件语句,表达式2){
+			 	循环体
+			 }
+			 
+			 形式二：
+			 for (变量     in  数组/对象){
+			 	循环体
+			 }
+			 */
+			var sum = 0;
+			for (var i=0;i<101;i+=1){
+				sum += i;
+			}
+			
+			console.log(sum)
+			
+			for (var i=1;i<5;i+=1){
+				if (i==1){
+					console.log('*');
+				}
+				else if (i == 2){
+					console.log('**');
+				}
+				else if(i==3){
+					console.log('***');
+				}
+				else if(i == 4){
+					console.log('****');
+				}
+			}
+			//如果是数组的话，就是一次拿到数组的索引。如果数组的下标越界获取到的值是undefined。
+//			var list= [1,2,3,4,5,6,7,8];
+//			for (var i in list){
+//				console.log(list[i]);
+//			}
+			//在对象中通过for in遍历对象中,得到的是key,对象的属性可以通过对象的名字[属性名]
+			//也可以对"象名.属性名"
+//			var dict = {'name':'zby','age':18,'sex':'boy'};
+//			for (var i in dict){
+//				console.log(i,dict[i]);
+//			}
+//			
+			//======================while循环=============================
+			/*while(条件语句){
+				循环体
+			}
+			*/
+//			var num = 1;
+//				sum = 0; 
+//			while (num <= 20){
+//				sum *= i;
+//				i += 1;
+//			}
+			
+			//do--while循环
+			/*
+			 do {循环体} while(条件语句)
+			 循环结构至少执行一次，先执行循环体，然后判断条件是否成立，如果成立就执行循环体，否则循环结束。
+			*/
+//			var sum= 1;
+//				num= 1;
+//			do{
+//				sum *= i;
+//				num += 1;
+//			}while (num<=20);
+//			
+//			console.log(sum)
+				
+			for(var i=300;i <=500;i+=1){
+				if (i % 13 == 0){
+					console.log(i)
+					break
+				}
+			}
+
+			
+		</script>
+	</body>
+</html>

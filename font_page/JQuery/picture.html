@@ -1,0 +1,42 @@
+<!-- 基于jQuery的Ajax -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="mm"></div>
+		<button id="loadBtn">加载</button>
+		<script src="js/jquery.min.js"></script>
+		<script>
+			$(function() {
+				$('#loadBtn').on('click', function() {
+//					var url ='http://api.tianapi.com/meinv/?key=439dde45e7b43fd22d994a1891b60ff7&num=10'
+//					$.getJSON(url, function(obj) {
+//						for (var i = 0; i < obj.newslist.length; i += 1) {
+//							$('#mm').append(
+//								$('<img>').attr('src', obj.newslist[i].picUrl)
+//									.attr('width', '300'));
+//						}
+//					});ss
+					$.ajax({
+						'url':'http://api.tianapi.com/meinv/?key=439dde45e7b43fd22d994a1891b60ff7&num=10',
+						'type':'get',
+//						'data':{'key':'key=439dde45e7b43fd22d994a1891b60ff7&','num':10},
+						'datatype':'json',
+						'success': function(obj){
+							for (var i = 0;i <obj.newslist.length;i +=1 ){
+								$('#mm').append(
+									$('<img>').attr('src',obj.newslist[i].picUrl)
+									.attr('width','300')
+								)
+							}
+						}
+					})
+				});
+			});
+		</script>
+	</body>
+</html>
+

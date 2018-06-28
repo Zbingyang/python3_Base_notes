@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		body{
+			margin: 0;
+			padding: 0;
+		}
+		#box{
+			width: 500px;
+			height: 500px;
+			border: 1px solid #00FFFF;	
+		}
+		#one{
+			margin-left: 200px;
+		}
+		button{
+			margin: 10px;
+		}
+		.color{
+			width: 50px;
+			height: 50px;
+			float: left;
+		}
+	</style>
+	<body>
+		<div id="box">
+		</div>
+		<div id="one">
+			<button id="btn1">添加</button>
+			<button id="btn2">闪烁</button>
+		</div>
+		<script type="text/javascript" src="js/my_lib.js" ></script>
+		<script>
+			(function(){
+				var counter = 0;
+				function color(){
+					var r = parseInt(Math.random()*256);
+					var g = parseInt(Math.random()*256);
+					var b = parseInt(Math.random()*256);
+					return 'rgb('+ r +','+ g +','+ b +')';
+				};
+				bind($('btn1'),'click',function(){
+					counter += 1;
+					if(counter <=100){
+					var div = document.createElement('div');
+					div.style.backgroundColor = color();
+					div.className = 'color';
+					$('box').appendChild(div);
+					}
+				});
+				var timer = 0;
+				bind($('btn2'),'click',function(){
+					setInterval(function(){
+					var div_list = document.querySelectorAll('#box div');
+					for(var i=0;i<div_list.length;i+=1){
+							var div_color = div_list[i];
+							div_color.style.backgroundColor = color();
+						}
+					},200);
+			});
+			}());
+		</script>
+	</body>
+</html>

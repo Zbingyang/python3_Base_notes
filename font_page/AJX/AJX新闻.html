@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>新闻头条</title>
+	</head>
+	<body>
+		
+		<script type="text/javascript" src="js/my_lib.js" ></script>
+		<script>
+			(function(){
+				//================创建异步请求的对象================
+				var xhr = new XMLHttpRequest();
+				var url = 'http://api.tianapi.com/world/?key=439dde45e7b43fd22d994a1891b60ff7&num=10';
+				console.log('111111111111111');
+				if (xhr){
+					//===============创建请求==========================
+					xhr.open('get',url,true);
+					//===============发送异步请求=======================
+					xhr.send();
+				//绑定事件回调函数(当服务器响应完成的时候对页面进行部分刷新)
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4 && xhr.status == 200){
+						var json = JSON.parse(xhr.responseText);
+						var news = json.newslist;
+					for(var i=0;i<news.length;i+=1){
+						var title_news = news[i];
+						var a = document.createElement('a');
+						a.textContent = title_news.title;
+						a.href = title_news.url;
+						var p = document.createElement('p');
+						p.appendChild(a);
+						document.body.appendChild(p);				
+					}
+				};
+				
+				};
+				};
+				
+			}());
+			
+		</script>
+	</body>
+</html>

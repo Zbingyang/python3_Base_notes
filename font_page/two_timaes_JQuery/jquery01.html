@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#page ul li{
+				list-style: none;
+				width: 160px;
+				height: 40px;
+				text-align: center;
+				border-bottom: 1px solid darkblue;
+				color: white;
+				font: 18px/40px "微软雅黑";
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<!--div#page>ul>li.hot*4>{item $}-->
+		<div id="page">
+		<h1 id="header">list</h1>
+		<h2>Buy groceries</h2>
+		<ul>
+			<li id="one" class="hot"><em>fresh</em>figs</li>
+			<li id = "two" class="hot">pine nuts</li>
+			<li id="three" class="hot">honey</li>
+			<li id="four">balsamic vinegar</li>
+		</ul>
+		</div>
+		<!--===========下载到到本地==================-->
+		<!--<script src="js/jquery.min.js"></script>-->
+		<!--=============用cdn来加速==============-->
+		<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript">
+			//=============在整个页面加载完成以后，在自动调用回调函数============
+			$(function(){
+			//=======================给元素绑定事件函数=====================
+				$('#page li:gt(0)').on('click',function(evt){
+					$(this).fadeOut(2000);
+				//	$(evt.target).findOut(2000);
+				});
+			});
+		</script>
+	</body>
+</html>

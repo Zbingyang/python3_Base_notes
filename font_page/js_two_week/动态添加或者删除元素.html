@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#big li{
+				width: 150px;
+				height: 30px;
+				background-color: #00FFFF;
+				color: white;
+				list-style: none;
+			  	border: 1px solid lightcyan;
+			  	text-align: center;
+			  	font: bold;
+			}
+			#big li a:link{color:white;}
+			#big li a:visited{color: white;}
+			
+			#big li a{
+				text-decoration: none;
+				color: white;
+				margin-left: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="big">
+			<ul id="fruit">
+				<li class="hot">西瓜<a href="javascript:void(0);">x</a></li>
+				<li class="hot">芒果<a href="javascript:void(0);">x</a></li>
+				<li class="hot">杨梅<a href="javascript:void(0);">x</a></li>
+				<li class="hot">青枣<a href="javascript:void(0);">x</a></li>
+			</ul>
+		<input id="txt" type="text" placeholder="请输入"/>
+		<button id="btn1">+</button>
+		<button id="btn2">-</button>
+		
+		</div>
+		<script type="text/javascript" src="js/my_lib.js" ></script>
+		<script>
+			(function(){
+				//===============此代码杂乱无章===================
+//				var ul = $('fruit')
+//				var text_content = $('txt').value;
+//				$('btn1').addEventListener('click',function(){
+//					var li = document.createElement('li');
+//						li.textContent = text_content;
+//					if(li.textContent.length>0){
+//
+//						ul.appendChild(li);
+//					};
+//				$('txt').value = '';
+//				$('txt').focus();
+//					});
+//				$('btn2').addEventListener('click',function(){
+//					var ul = document.querySelectorAll('li');
+//					if(ul.length > 0){
+//					li = ul([ul.length-1]);
+//					ul.removeChild(li);
+//					}
+//				$('txt') = '';
+//				$('txt').focus();
+//				});
+			function removeItem(evt){
+					//============事件的浏览器的兼容性===============
+					evt = evt || window.event;
+					//============事件源的浏览器的兼容性===============
+					var target = evt.target || evt.srcElement;
+			/*注解： 我们点击"x"就引发了事件,这个点击就是事件本身(evt)，那么对应的事件源(target)就是含有"x"的a标签
+			*那么事件源对应的父标签就是li标签。
+			* */
+					//========通过id选择器来删除事件源的父节点==========
+
+					$('fruit').removeChild(target.parentNode);
+					//============获取第一个儿子标签====================
+//					$('fruit').firstChild
+					//=============获取最后一个儿子的标签===============
+//					$('fruit').lastChild
+					//=============获取所有的儿子标签================
+//					$('fruit').children;
+			};
+			var a_list = document.querySelectorAll('#big li a');
+			for(var i=0;i<a_list.length;i+=1){
+				bind(a_list[i],'click',removeItem);
+			};
+			bind($('btn1'),'click',function(){
+				var text_content = $('txt').value.trim();
+				if (text_content.length>0){
+					//==========创建li元素===============
+					var li = document.createElement('li');
+					//=========给li元素添加文本内容===========
+					li.textContent = text_content;
+//					$('fruit').appendChild(li);
+					//==========创建a标签=============
+					 var a = document.createElement('a');
+					 //============给a标签添加内容=============
+					 a.textContent = 'x';
+					 bind(a,'click',removeItem);
+					 //=======把a标签添加到父级标签li里面=============
+					 li.appendChild(a);
+					 //=======然后再把li标签添加到 li的父级标签里面=========
+			//=======insertBefore(插入的标签，参照节点的标签)====放在参照标签的前面==========
+			//=============js改变样式(标签.style.需要改变的样式 = "样式对应的属性";)===============================
+					li.style.backgroundColor = "chartreuse";
+					 $('fruit').insertBefore(li,$('fruit').firstChild);
+					 //============文本框清0==========
+					 $("fruit").value = '';
+					 //通过js来改变样式
+					 
+				};
+			});
+			}());
+		</script>
+		
+	</body>
+</html>
